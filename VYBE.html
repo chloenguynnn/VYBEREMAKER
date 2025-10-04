@@ -9,139 +9,246 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-color: #081E28;
+            --accent-color: #FD05A0;
+            --text-color: #E5E7EB;
+            --text-secondary-color: #9CA3AF;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #111827; /* Dark background */
-            color: #E5E7EB;
+            background-color: var(--bg-color);
+            color: var(--text-color);
         }
+
         .hero-bg {
-            background-image: url('https://placehold.co/1920x1080/111827/FFFFFF?text=VYBE+REMAKE+STYLE&font=inter');
+            background-image: url('https://placehold.co/1920x1080/081E28/FFFFFF?text=VYBE+REMAKE+STYLE&font=inter');
             background-size: cover;
             background-position: center;
         }
+
         .text-glow {
-            text-shadow: 0 0 8px rgba(250, 204, 21, 0.7), 0 0 20px rgba(250, 204, 21, 0.5);
+            color: var(--accent-color);
+            text-shadow: 0 0 8px rgba(253, 5, 160, 0.7), 0 0 20px rgba(253, 5, 160, 0.5);
         }
+
         .card-bg {
-            background-color: rgba(31, 41, 55, 0.8);
-            backdrop-filter: blur(10px);
+            background-color: rgba(17, 24, 39, 0.6); /* Slightly lighter dark */
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
         .counter-box {
-            border: 2px solid #FACC15;
-            box-shadow: 0 0 15px rgba(250, 204, 21, 0.5);
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 15px rgba(253, 5, 160, 0.5);
         }
+
         .social-wall-item {
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
         .social-wall-item:hover {
             transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 10px 20px rgba(253, 5, 160, 0.3);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background-color: #1F2937;
+            max-height: 80vh;
+        }
+        .modal-content h3 {
+            color: var(--accent-color);
+            font-weight: 800;
+        }
+
+        /* Gemini AI Section Styles */
+        .gemini-input {
+            background-color: #1F2937;
+            border: 1px solid #4B5563;
+            color: var(--text-color);
+        }
+        .gemini-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(253, 5, 160, 0.5);
+        }
+        .gemini-button {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        .gemini-button:hover {
+            background-color: #E60490;
+        }
+        .gemini-result {
+            background-color: #111827;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            min-height: 150px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: var(--text-secondary-color);
+            border: 1px dashed #4B5563;
+        }
+        .loader {
+            border: 4px solid #374151;
+            border-top: 4px solid var(--accent-color);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- 1. HERO SECTION: GÂY ẤN TƯỢNG ĐẦU TIÊN -->
+    <!-- 1. HERO SECTION -->
     <header class="hero-bg min-h-screen flex flex-col items-center justify-center text-center p-6 text-white relative">
-        <div class="absolute inset-0 bg-black opacity-60"></div>
+        <div class="absolute inset-0 bg-black opacity-70"></div>
         <div class="relative z-10">
-            <h1 class="text-5xl md:text-8xl font-black uppercase tracking-tighter text-glow">#OwnTheVYBE</h1>
-            <p class="mt-4 text-xl md:text-3xl font-bold text-amber-300">BIẾN TẤU ĐỒ CŨ - TẠO CHẤT RIÊNG CÙNG VYBE</p>
-            <p class="mt-6 max-w-2xl mx-auto text-lg text-gray-300">
+            <h1 class="text-5xl md:text-8xl font-black uppercase tracking-tighter">MIX YOUR <span class="text-glow">STYLE</span></h1>
+            <p class="mt-4 text-3xl md:text-5xl font-bold uppercase">SHOW YOUR <span class="text-glow">VYBE</span></p>
+            <p class="mt-8 max-w-2xl mx-auto text-lg text-gray-300">
                 Sân chơi dành cho Gen Z dám khác biệt. Nơi mỗi outfit không chỉ là thời trang, mà là một tác phẩm độc bản của chính bạn.
             </p>
-            <a href="#the-le" class="mt-10 inline-block bg-amber-400 text-gray-900 font-bold py-4 px-10 rounded-lg text-lg uppercase tracking-wider hover:bg-amber-300 transition duration-300 transform hover:scale-105">
+            <a href="#the-le" class="mt-10 inline-block bg-[#FD05A0] text-white font-bold py-4 px-10 rounded-lg text-lg uppercase tracking-wider hover:bg-[#E60490] transition duration-300 transform hover:scale-105">
                 Tham gia ngay
             </a>
         </div>
     </header>
 
     <main>
-        <!-- 2. CONCEPT SECTION: GIỚI THIỆU Ý TƯỞNG -->
-        <section class="py-20 px-6 bg-gray-900">
+        <!-- 2. CONCEPT SECTION -->
+        <section class="py-20 px-6 bg-black/20">
             <div class="max-w-4xl mx-auto text-center">
                 <h2 class="text-4xl font-extrabold tracking-tight">KHÔNG CHỈ LÀ PHỐI ĐỒ.</h2>
-                <h3 class="text-4xl font-extrabold tracking-tight text-amber-400">ĐÂY LÀ SÂN CHƠI SÁNG TẠO CỦA BẠN.</h3>
+                <h3 class="text-4xl font-extrabold tracking-tight text-glow">ĐÂY LÀ SÂN CHƠI SÁNG TẠO CỦA BẠN.</h3>
                 <p class="mt-6 text-lg text-gray-400">
                     Chiến dịch #VYBERemake thách thức bạn biến một món đồ cũ thành một item độc nhất, thể hiện cá tính và phối cùng trang phục VYBE để tạo nên một outfit "có một không hai". Đây là cách chúng ta cùng nhau định nghĩa lại thời trang: **Cá tính**, **Tự do**, **Tiện dụng** và **Bền vững**.
                 </p>
             </div>
         </section>
 
-        <!-- 3. HOW TO JOIN SECTION: HƯỚNG DẪN THAM GIA (THỂ LỆ) -->
+        <!-- 3. HOW TO JOIN SECTION -->
         <section id="the-le" class="py-20 px-6">
             <div class="max-w-6xl mx-auto">
                 <h2 class="text-center text-4xl font-extrabold tracking-tight mb-12">3 BƯỚC ĐƠN GIẢN ĐỂ "REMAKE"</h2>
                 <div class="grid md:grid-cols-3 gap-8 text-center">
                     <!-- Step 1 -->
                     <div class="card-bg p-8 rounded-2xl">
-                        <div class="flex items-center justify-center h-20 w-20 mx-auto bg-gray-700 rounded-full mb-6">
-                             <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                        <div class="flex items-center justify-center h-20 w-20 mx-auto bg-gray-800 rounded-full mb-6 border-2 border-[#FD05A0]">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-[#FD05A0]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
                         </div>
                         <h3 class="text-2xl font-bold">1. BIẾN TẤU (REMAKE)</h3>
                         <p class="mt-4 text-gray-400">Tìm một món đồ 2-hand và "biến hình" nó theo cách của bạn: cắt, vẽ, thêu, đính phụ kiện... Hãy để sự sáng tạo dẫn lối!</p>
                     </div>
                     <!-- Step 2 -->
                     <div class="card-bg p-8 rounded-2xl">
-                         <div class="flex items-center justify-center h-20 w-20 mx-auto bg-gray-700 rounded-full mb-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                         <div class="flex items-center justify-center h-20 w-20 mx-auto bg-gray-800 rounded-full mb-6 border-2 border-[#FD05A0]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-[#FD05A0]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                         </div>
                         <h3 class="text-2xl font-bold">2. LÊN ĐỒ (MIX & MATCH)</h3>
                         <p class="mt-4 text-gray-400">Phối item "độc bản" vừa tạo cùng một sản phẩm bất kỳ của VYBE. Đừng ngại thử nghiệm để tạo ra một outfit đậm chất riêng.</p>
                     </div>
                     <!-- Step 3 -->
                     <div class="card-bg p-8 rounded-2xl">
-                         <div class="flex items-center justify-center h-20 w-20 mx-auto bg-gray-700 rounded-full mb-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                         <div class="flex items-center justify-center h-20 w-20 mx-auto bg-gray-800 rounded-full mb-6 border-2 border-[#FD05A0]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-[#FD05A0]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
                         </div>
                         <h3 class="text-2xl font-bold">3. LÊN SÓNG (POST TIKTOK)</h3>
-                        <p class="mt-4 text-gray-400">Quay video quá trình biến tấu và khoe outfit của bạn. Đăng lên TikTok kèm hashtag <span class="font-bold text-amber-300">#OwnTheVYBE #VYBERemake</span> và tag <span class="font-bold text-amber-300">@vybe.vietnam</span></p>
+                        <p class="mt-4 text-gray-400">Quay video quá trình biến tấu và khoe outfit của bạn. Đăng lên TikTok kèm hashtag <span class="font-bold text-[#FD05A0]">#OwnTheVYBE #VYBERemake</span> và tag <span class="font-bold text-[#FD05A0]">@vybe.vietnam</span></p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 4. SOCIAL WALL: BỨC TƯỜNG CỘNG ĐỒNG -->
-        <!-- In a real website, this section would be a dynamic social wall that pulls videos from TikTok API -->
-        <section class="py-20 px-6 bg-gray-900">
+        <!-- GEMINI AI SECTION -->
+        <section id="gemini-ai" class="py-20 px-6 bg-black/20">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl font-extrabold tracking-tight">BÍ Ý TƯỞNG?</h2>
+                <h3 class="text-4xl font-extrabold tracking-tight text-glow">HỎI TRỢ LÝ AI SÁNG TẠO!</h3>
+                <p class="mt-6 text-lg text-gray-400">
+                    Chỉ cần nhập tên món đồ bạn muốn "remake" (ví dụ: áo sơ mi trắng cũ, quần jean cũ...), Gemini AI sẽ gợi ý cho bạn những ý tưởng biến tấu cực chất.
+                </p>
+                <div class="mt-12 max-w-2xl mx-auto">
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <input type="text" id="ai-prompt" class="gemini-input flex-grow rounded-lg p-3" placeholder="Nhập món đồ cần biến tấu...">
+                        <button id="ai-button" class="gemini-button rounded-lg p-3 font-bold text-lg">Lấy ý tưởng</button>
+                    </div>
+                    <div id="ai-result-container" class="mt-6 text-left">
+                        <div id="ai-loader" class="hidden mx-auto loader"></div>
+                        <div id="ai-result" class="gemini-result">
+                            Gợi ý của AI sẽ xuất hiện ở đây...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 4. SOCIAL WALL -->
+        <section class="py-20 px-6">
             <div class="max-w-7xl mx-auto">
                 <h2 class="text-center text-4xl font-extrabold tracking-tight mb-12">CỘNG ĐỒNG #VYBEREMAKE ĐÃ RA TAY</h2>
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <!-- Placeholder items -->
-                    <div class="social-wall-item rounded-lg overflow-hidden"><img src="https://placehold.co/400x600/1F2937/FACC15?text=@user1_remake&font=inter" alt="User submission 1"></div>
-                    <div class="social-wall-item rounded-lg overflow-hidden"><img src="https://placehold.co/400x600/1F2937/FACC15?text=@user2_style&font=inter" alt="User submission 2"></div>
-                    <div class="social-wall-item rounded-lg overflow-hidden"><img src="https://placehold.co/400x600/1F2937/FACC15?text=@creative_genz&font=inter" alt="User submission 3"></div>
-                    <div class="social-wall-item rounded-lg overflow-hidden"><img src="https://placehold.co/400x600/1F2937/FACC15?text=@vybe_lover&font=inter" alt="User submission 4"></div>
-                    <div class="social-wall-item rounded-lg overflow-hidden"><img src="https://placehold.co/400x600/1F2937/FACC15?text=@diy_fashion&font=inter" alt="User submission 5"></div>
-                    <div class="social-wall-item rounded-lg overflow-hidden"><img src="https://placehold.co/400x600/1F2937/FACC15?text=@style_hacker&font=inter" alt="User submission 6"></div>
-                    <div class="social-wall-item rounded-lg overflow-hidden"><img src="https://placehold.co/400x600/1F2937/FACC15?text=@remake_king&font=inter" alt="User submission 7"></div>
-                    <div class="social-wall-item rounded-lg overflow-hidden"><img src="https://placehold.co/400x600/1F2937/FACC15?text=@vybe.vietnam&font=inter" alt="User submission 8"></div>
+                    <div class="social-wall-item rounded-lg overflow-hidden"><img src="https://placehold.co/400x600/081E28/FD05A0?text=Remake+by%0A@user1_style&font=inter" alt="User submission 1"></div>
+                    <div class="social-wall-item rounded-lg overflow-hidden"><img src="https://placehold.co/400x600/081E28/FD05A0?text=My+VYBE%0A@creative_genz&font=inter" alt="User submission 2"></div>
+                    <div class="social-wall-item rounded-lg overflow-hidden"><img src="https://placehold.co/400x600/081E28/FD05A0?text=DIY+Fashion%0A@style_hacker&font=inter" alt="User submission 3"></div>
+                    <div class="social-wall-item rounded-lg overflow-hidden"><img src="https://placehold.co/400x600/081E28/FD05A0?text=Check+this%0A@vybe_lover&font=inter" alt="User submission 4"></div>
+                    <div class="social-wall-item rounded-lg overflow-hidden"><img src="https://placehold.co/400x600/081E28/FD05A0?text=New+Look%0A@diy_master&font=inter" alt="User submission 5"></div>
+                    <div class="social-wall-item rounded-lg overflow-hidden"><img src="https://placehold.co/400x600/081E28/FD05A0?text=My+Creation%0A@remake_queen&font=inter" alt="User submission 6"></div>
+                    <div class="social-wall-item rounded-lg overflow-hidden"><img src="https://placehold.co/400x600/081E28/FD05A0?text=Outfit+of+the+day%0A@fashionista_vn&font=inter" alt="User submission 7"></div>
+                    <div class="social-wall-item rounded-lg overflow-hidden"><img src="https://placehold.co/400x600/081E28/FD05A0?text=VYBE's+Vibe%0A@vybe.vietnam&font=inter" alt="User submission 8"></div>
                 </div>
             </div>
         </section>
         
-        <!-- 5. PRIZES SECTION: GIẢI THƯỞNG -->
-        <section class="py-20 px-6">
+        <!-- 5. PRIZES SECTION -->
+        <section class="py-20 px-6 bg-black/20">
             <div class="max-w-6xl mx-auto">
                 <h2 class="text-center text-4xl font-extrabold tracking-tight mb-12">GIẢI THƯỞNG ĐẬM CHẤT RIÊNG</h2>
-                 <div class="grid md:grid-cols-2 gap-8">
-                     <div class="card-bg p-8 rounded-2xl flex flex-col">
-                         <h3 class="text-amber-300 text-3xl font-bold">GIẢI SÁNG TẠO HÀNG TUẦN</h3>
-                         <p class="mt-4 text-gray-400">Mỗi tuần, 5 video ấn tượng nhất sẽ được vinh danh trên kênh của VYBE và nhận ngay voucher mua sắm trị giá 500.000 VNĐ.</p>
-                     </div>
-                     <div class="card-bg p-8 rounded-2xl flex flex-col">
-                         <h3 class="text-amber-300 text-3xl font-bold">GIẢI QUÁN QUÂN CHUNG CUỘC</h3>
-                         <p class="mt-4 text-gray-400">01 Quán quân duy nhất sẽ nhận được: <br>
-                            - Voucher mua sắm tại VYBE trong 1 năm (trị giá 10.000.000 VNĐ).<br>
-                            - Cơ hội hợp tác trong BST tiếp theo của VYBE.
-                         </p>
-                     </div>
+                 <div class="grid md:grid-cols-3 gap-8 items-start">
+                    <!-- Weekly Prize -->
+                    <div class="card-bg p-8 rounded-2xl flex flex-col h-full">
+                        <h3 class="text-2xl font-bold">GIẢI SÁNG TẠO HÀNG TUẦN</h3>
+                        <p class="text-sm font-semibold text-[#FD05A0]">(TOP 3 MỖI TUẦN)</p>
+                        <p class="mt-4 text-gray-400 flex-grow">Mỗi tuần, 3 video ấn tượng nhất sẽ được vinh danh trên kênh của VYBE và nhận ngay voucher mua sắm trị giá 500.000 VNĐ.</p>
+                    </div>
+                    <!-- Grand Prize -->
+                    <div class="card-bg p-8 rounded-2xl flex flex-col h-full md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-bold">GIẢI QUÁN QUÂN SÁNG TẠO</h3>
+                            <p class="text-sm font-semibold text-[#FD05A0]">(DO VYBE LỰA CHỌN)</p>
+                            <ul class="mt-4 text-gray-400 list-disc list-inside space-y-2">
+                                <li>Gói tài trợ sản phẩm 1 năm (trị giá 20.000.000 VNĐ)</li>
+                                <li>Trở thành gương mặt đại diện cho BST mới</li>
+                                <li>Cúp lưu niệm độc quyền</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold">GIẢI CỘNG ĐỒNG YÊU THÍCH</h3>
+                            <p class="text-sm font-semibold text-[#FD05A0]">(DỰA TRÊN BÌNH CHỌN)</p>
+                             <ul class="mt-4 text-gray-400 list-disc list-inside space-y-2">
+                                <li>Voucher mua sắm trị giá 10.000.000 VNĐ</li>
+                                <li>Bộ sản phẩm quà tặng độc quyền từ VYBE</li>
+                            </ul>
+                        </div>
+                    </div>
                  </div>
             </div>
         </section>
 
-        <!-- 6. CSR SECTION: DẤU ẤN CỘNG ĐỒNG -->
-        <section class="py-20 px-6 bg-gray-900">
+        <!-- 6. CSR SECTION -->
+        <section class="py-20 px-6">
             <div class="max-w-4xl mx-auto text-center">
                  <h2 class="text-4xl font-extrabold tracking-tight">MỖI OUTFIT CỦA BẠN LÀ MỘT SỰ GIÚP ĐỠ</h2>
                 <p class="mt-6 text-lg text-gray-400">
@@ -149,31 +256,152 @@
                 </p>
                 <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="counter-box p-6 rounded-lg">
-                        <p class="text-5xl font-bold text-amber-300">1,258</p>
+                        <p id="video-counter" class="text-5xl font-bold text-glow">1,258</p>
                         <p class="mt-2 text-lg font-semibold tracking-wider">VIDEO ĐÃ THAM GIA</p>
                     </div>
                      <div class="counter-box p-6 rounded-lg">
-                        <p class="text-5xl font-bold text-amber-300">12,580,000</p>
+                        <p id="donation-counter" class="text-5xl font-bold text-glow">12,580,000</p>
                         <p class="mt-2 text-lg font-semibold tracking-wider">VNĐ ĐÃ QUYÊN GÓP</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 7. T&C SECTION: ĐIỀU KHOẢN -->
-         <section class="py-16 px-6 text-center">
+        <!-- 7. T&C SECTION -->
+         <section class="py-16 px-6 text-center bg-black/20">
              <h3 class="text-2xl font-bold">Điều Khoản & Điều Kiện</h3>
              <p class="mt-4 max-w-2xl mx-auto text-gray-400">Bằng việc tham gia, bạn đồng ý cấp cho VYBE quyền sử dụng video của bạn cho các mục đích truyền thông. Vui lòng đọc kỹ điều khoản chi tiết để đảm bảo quyền lợi.</p>
-             <a href="#" class="mt-6 inline-block text-amber-400 font-semibold hover:text-amber-300">Xem điều khoản đầy đủ →</a>
+             <button id="open-modal-btn" class="mt-6 inline-block text-[#FD05A0] font-semibold hover:text-white transition">Xem điều khoản đầy đủ →</button>
          </section>
-
     </main>
     
     <!-- FOOTER -->
-    <footer class="bg-gray-900 text-center py-8">
+    <footer class="bg-black/40 text-center py-8">
         <p class="text-gray-400">&copy; 2025 VYBE Vietnam. All Rights Reserved.</p>
-        <p class="text-gray-500 mt-2">Own the streets, own the VYBE.</p>
+        <p class="text-gray-500 mt-2">MIX YOUR STYLE, SHOW YOUR VYBE.</p>
     </footer>
+
+    <!-- MODAL FOR T&C -->
+    <div id="tnc-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+        <!-- Overlay -->
+        <div id="modal-overlay" class="modal-overlay fixed inset-0"></div>
+        <!-- Modal Content -->
+        <div class="modal-content relative w-full max-w-4xl rounded-2xl shadow-lg p-8 overflow-y-auto">
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
+            <h2 class="text-3xl font-extrabold text-center mb-6">THỂ LỆ CHI TIẾT CHIẾN DỊCH</h2>
+            <div class="text-gray-300 space-y-4 text-left">
+                <h3 class="text-xl font-bold">#OwnTheVYBE – Mix2Impact</h3>
+                <p class="italic text-[#FD05A0]">Slogan: CHẤT CỦA VYBE, BIẾN TẤU LIỀN TAY</p>
+                
+                <h3 class="text-lg font-bold pt-4">1. ĐỐI TƯỢNG THAM GIA:</h3>
+                <p>Tất cả công dân Việt Nam đang sinh sống trong và ngoài nước, yêu thích thời trang, sáng tạo và mong muốn lan tỏa phong cách sống bền vững. Không giới hạn độ tuổi, tuy nhiên người tham gia dưới 18 tuổi cần có sự đồng ý của phụ huynh hoặc người giám hộ.</p>
+
+                <h3 class="text-lg font-bold pt-4">2. THỜI GIAN DIỄN RA:</h3>
+                <p><strong>Thời gian nhận bài dự thi:</strong> Từ 00:00 ngày 01/11/2025 đến 23:59 ngày 30/12/2025.<br><strong>Thời gian công bố kết quả chung cuộc:</strong> Dự kiến vào ngày 05/1/2026.</p>
+
+                <h3 class="text-lg font-bold pt-4">3. CÁCH THỨC THAM GIA (3 BƯỚC ĐƠN GIẢN):</h3>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><strong>Bước 1: FOLLOW:</strong> Theo dõi (Follow) kênh TikTok chính thức của VYBE: @vybe.vietnam.</li>
+                    <li><strong>Bước 2: SÁNG TẠO NỘI DUNG:</strong> Biến tấu (Remake) một món đồ 2-hand và phối cùng ít nhất 01 sản phẩm VYBE, sau đó quay video thể hiện quá trình và kết quả.</li>
+                    <li><strong>Bước 3: ĐĂNG TẢI:</strong> Đăng video lên TikTok cá nhân ở chế độ Công khai, gắn hashtag #OwnTheVYBE #VYBERemake và tag @vybe.vietnam.</li>
+                </ul>
+
+                <h3 class="text-lg font-bold pt-4">4. QUY ĐỊNH VỀ NỘI DUNG HỢP LỆ:</h3>
+                <p>Video phải do chính người tham gia sáng tạo, không vi phạm bản quyền, không chứa nội dung nhạy cảm, và sử dụng âm thanh trong thư viện được cấp phép của TikTok.</p>
+                
+                <h3 class="text-lg font-bold pt-4">5. CƠ CẤU GIẢI THƯỞNG:</h3>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><strong>GIẢI THƯỞNG HÀNG TUẦN (TOP 3 SÁNG TẠO):</strong> 01 Voucher 500,000 VNĐ và được vinh danh trên kênh TikTok của VYBE.</li>
+                    <li><strong>GIẢI QUÁN QUÂN SÁNG TẠO:</strong> Gói tài trợ sản phẩm 1 năm (20,000,000 VNĐ), cơ hội trở thành gương mặt đại diện cho BST mới, và cúp lưu niệm.</li>
+                    <li><strong>GIẢI CỘNG ĐỒNG YÊU THÍCH:</strong> 01 Voucher 10,000,000 VNĐ và bộ sản phẩm quà tặng độc quyền.</li>
+                </ul>
+
+                <h3 class="text-lg font-bold pt-4">6. TIÊU CHÍ CHẤM GIẢI & QUY ĐỊNH CHỐNG GIAN LẬN:</h3>
+                <p>Giải Quán Quân sẽ được chấm dựa trên 40% Sáng tạo, 30% Phù hợp tinh thần VYBE, và 30% Mức độ lan tỏa tự nhiên. VYBE có quyền loại bỏ các bài dự thi có dấu hiệu gian lận tương tác mà không cần báo trước.</p>
+
+                <h3 class="text-lg font-bold pt-4">7. BẢN QUYỀN VÀ QUYỀN SỬ DỤNG:</h3>
+                <p>Bằng việc tham gia, bạn đồng ý cấp cho VYBE quyền sử dụng video của bạn cho các mục đích truyền thông. VYBE cam kết sẽ luôn thực hiện quy trình xin phép qua tin nhắn trực tiếp và ghi đầy đủ credit của người sáng tạo khi sử dụng lại video.</p>
+                
+                <p class="font-bold text-center pt-6 text-white">Lời cuối cùng, VYBE rất mong chờ được chiêm ngưỡng những tác phẩm thật độc đáo, nơi cá tính của bạn được tỏa sáng. Chúc các bạn có những màn biến tấu thật "cháy" và hãy nhớ, sân chơi này là của bạn!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- MODAL SCRIPT ---
+        const openModalBtn = document.getElementById('open-modal-btn');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const modalOverlay = document.getElementById('modal-overlay');
+        const tncModal = document.getElementById('tnc-modal');
+
+        const openModal = () => {
+            tncModal.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        };
+
+        const closeModal = () => {
+            tncModal.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        };
+
+        openModalBtn.addEventListener('click', openModal);
+        closeModalBtn.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', closeModal);
+        
+        // --- GEMINI AI SCRIPT ---
+        const aiPromptInput = document.getElementById('ai-prompt');
+        const aiButton = document.getElementById('ai-button');
+        const aiResultContainer = document.getElementById('ai-result');
+        const aiLoader = document.getElementById('ai-loader');
+
+        aiButton.addEventListener('click', async () => {
+            const userPrompt = aiPromptInput.value.trim();
+            if (!userPrompt) {
+                aiResultContainer.textContent = 'Vui lòng nhập tên một món đồ để AI có thể gợi ý cho bạn!';
+                return;
+            }
+
+            aiResultContainer.classList.add('hidden');
+            aiLoader.classList.remove('hidden');
+            
+            const systemPrompt = "Bạn là một stylist thời trang Gen Z, chuyên gia 'remake' và 'upcycling' đồ cũ. Hãy đưa ra 3 ý tưởng biến tấu độc đáo, ngắn gọn, và khả thi cho món đồ mà người dùng cung cấp. Mỗi ý tưởng cần có một tiêu đề thật 'chất' (in đậm), và mô tả ngắn gọn cách thực hiện. Giọng văn phải trẻ trung, năng động và truyền cảm hứng.";
+            const apiKey = ""; // API key is handled by the environment
+
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{ text: `${systemPrompt}\n\nMón đồ cần biến tấu: ${userPrompt}` }]
+                        }],
+                    }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API call failed with status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    // Simple formatting to make bold text work
+                    aiResultContainer.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong class="text-[#FD05A0]">$1</strong>');
+                } else {
+                    aiResultContainer.textContent = 'Rất tiếc, AI không thể đưa ra gợi ý lúc này. Vui lòng thử lại sau.';
+                }
+            } catch (error) {
+                console.error('Error calling Gemini API:', error);
+                aiResultContainer.textContent = 'Đã có lỗi xảy ra. Vui lòng kiểm tra lại và thử lại sau ít phút.';
+            } finally {
+                aiLoader.classList.add('hidden');
+                aiResultContainer.classList.remove('hidden');
+            }
+        });
+    </script>
 
 </body>
 </html>
